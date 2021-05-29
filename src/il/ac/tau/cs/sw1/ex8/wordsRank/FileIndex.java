@@ -168,14 +168,17 @@ public class FileIndex {
      * Get all the words theirs rankType less than k
      * @param k The condition
      * @param cType The rankType criteria
-     * @return List of words satisfies the condition
+     * @return Sorted List of words satisfies the condition
      */
     private List<String> getWordsWithRankTypeSmallerThanK(int k, rankType cType) {
+        LinkedList<RankedWord> wordsAndRanked = new LinkedList<>(wordsAndRankedMap.values());
+        wordsAndRanked.sort(new RankedWordComparator(cType)); // Sort by rankType
         LinkedList<String> wordsListSmallerThanK = new LinkedList<>();
 
-        for (RankedWord rankWord : wordsAndRankedMap.values()) {
-            if (rankWord.getRankByType(cType) < k)
-                wordsListSmallerThanK.add(rankWord.getWord());
+        for (RankedWord rankWord : wordsAndRanked) {
+            if (rankWord.getRankByType(cType) >= k) // Break on !(rank < k)
+                break;
+            wordsListSmallerThanK.add(rankWord.getWord());
         }
         return wordsListSmallerThanK;
     }
@@ -183,7 +186,7 @@ public class FileIndex {
     /**
      * Get all the words theirs average rank less than k
      * @param k The condition
-     * @return List of words satisfies the condition
+     * @return Sorted List of words satisfies the condition
      */
     public List<String> getWordsWithAverageRankSmallerThanK(int k) {
         return getWordsWithRankTypeSmallerThanK(k, rankType.average);
@@ -192,7 +195,7 @@ public class FileIndex {
     /**
      * Get all the words theirs Min rank less than k
      * @param k The condition
-     * @return List of words satisfies the condition
+     * @return Sorted List of words satisfies the condition
      */
     public List<String> getWordsWithMinRankSmallerThanK(int k) {
         return getWordsWithRankTypeSmallerThanK(k, rankType.min);
@@ -201,7 +204,7 @@ public class FileIndex {
     /**
      * Get all the words theirs Max rank less than k
      * @param k The condition
-     * @return List of words satisfies the condition
+     * @return Sorted List of words satisfies the condition
      */
     public List<String> getWordsWithMaxRankSmallerThanK(int k) {
         return getWordsWithRankTypeSmallerThanK(k, rankType.max);

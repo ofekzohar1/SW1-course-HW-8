@@ -7,3 +7,9 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 /.idea/inspectionProfiles/Project_Default.xml
+/resources/hw8/input/test/bee-movie.txt
+/resources/hw8/input/test/bongcloud.txt
+/resources/hw8/input/test/chrysalis.txt
+/src/il/ac/tau/cs/sw1/ex8/wordsRank/FileTester.java
+/src/il/ac/tau/cs/sw1/ex8/histogram/HistogramTester.java
+/resources/hw8/input/test/lorem-ipsum.txt
