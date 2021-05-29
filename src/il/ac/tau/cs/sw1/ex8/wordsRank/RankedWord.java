@@ -14,7 +14,7 @@ import java.util.Map;
 
 class RankedWord{
 	
-	public static enum rankType {average, min, max};
+	public static enum rankType {average, min, max}
 
 	
 	private String word;
@@ -27,7 +27,7 @@ class RankedWord{
 		this.word = word;
 		this.ranksForFile = ranksForFiles;
 		this.min = Collections.min(ranksForFile.values()); // retrieve the minimal value in a collection
-		this.max = Collections.max(ranksForFile.values()); // retrieve the maxinum value in a collection
+		this.max = Collections.max(ranksForFile.values()); // retrieve the maximum value in a collection
 		int sum = 0;
 		for (Integer rank : ranksForFile.values()){
 			sum += rank;
